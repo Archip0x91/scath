@@ -4,7 +4,7 @@
 
 #include <AceWire.h> 
 
-#include <LiquidCrystal_12C.h>
+#include <LiquidCrystal.h>
 
 SoftwareSerial BTSerial(11,12); // RX, ТХ
 
@@ -18,7 +18,7 @@ int yAxis Value;
 
 Servo servo; // Создаем экземпляр класса LiquidCrystal_2C для управления дисплеем
 
- LiquidCrystal_2C lcd(0x27,16, 2); // Указываем адрес экрана на шине 12С и количество колонок и строк
+ LiquidCrystal_I2C lcd(0x27,16, 2); // Указываем адрес экрана на шине 12С и количество колонок и строк
 
 void setup() { 
 
@@ -50,12 +50,15 @@ if (BTSerial.available()) { char command= BTSerial.read(); if (command 10) ( dig
 
 Serial.println("LED OFF"); } else if (command == 1')
 
-digitalWrite(LED_PIN, HIGH); Serial.println("LED ON"); } }
+digitalWrite(LED_PIN, HIGH);
 
-xAxisValue =
+    
 
-analogRead(xAxisPin); yAxisValue = analogRead(yAxisPin); int servoAngle
+ Serial.println("LED ON"); 
+
+xAxisValue =analogRead(xAxisPin); yAxisValue =analogRead(yAxisPin); int servoAngle
 
 map(xAxisValue, 0, 1023, 0, 180); servo.write(servo Angle); delay(15);
 
 }
+
