@@ -1,30 +1,28 @@
-#include <SoftwareSerial.h> #include <Servo.h>
+#include <SoftwareSerial.h>
 
-#include <AceWire.h> #include <LiquidCrystal_12C.h>
+#include <Servo.h>
 
-SoftwareSerial BTSerial(11,
+#include <AceWire.h> 
 
-12); // RX, ТХ
+#include <LiquidCrystal_12C.h>
+
+SoftwareSerial BTSerial(11,12); // RX, ТХ
 
 #define LED_PIN 13 const int xAxisPin = A0; const int yAxisPin = A1;
 
 const int servoPin = 9;
 
-int xAxis Value int yAxis Value;
+int xAxis Value 
 
-Servo servo;
+int yAxis Value;
 
-// Создаем экземпляр класса LiquidCrystal_2C для управления дисплеем
+Servo servo; // Создаем экземпляр класса LiquidCrystal_2C для управления дисплеем
 
-// Указываем адрес
+ LiquidCrystal_2C lcd(0x27,16, 2); // Указываем адрес экрана на шине 12С и количество колонок и строк
 
-экрана на шине 12С и количество колонок и строк LiquidCrystal_2C lcd(0x27,
+void setup() { 
 
-16, 2);
-
-void setup() { Icd.init(); //
-
-Инициализация экрана
+Icd.init(); // Инициализация экрана
 
 pinMode(LED_PIN, OUTPUT);
 
@@ -38,19 +36,17 @@ Serial.begin(9600);
 
 BTSerial.begin(9600);
 
+}
+
 void loop(){
 
-Icd.backlight(); //Включаем подсветку экрана 
+Icd.backlight();  //Включаем подсветку экрана 
 
-Icd setCursor(0, 0); //
-
-Устанавливаем курсор в начало первой строки
+Icd setCursor(0, 0); // Устанавливаем курсор в начало первой строки
 
  Icd.print("Hello"); // Вывод текста на экран в первой строке
 
-if (BTSerial.available()) { char command= BTSerial.read(); if (command 10) ( digitalWrite(LED_PIN,
-
-LOW);
+if (BTSerial.available()) { char command= BTSerial.read(); if (command 10) ( digitalWrite(LED_PIN,LOW);
 
 Serial.println("LED OFF"); } else if (command == 1')
 
